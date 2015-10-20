@@ -1,26 +1,71 @@
 (function ($) {
 
-  if (typeof Drupal != 'undefined') {
-    Drupal.behaviors.wcportalMobileTheme = {
-      attach: function (context, settings) {
-        init();
-      },
+  $(window).load(function () {
+    var sort = $('.b-filter .sorting '),
+      $title = $('.sorting .title'),
+      $li = $('.sorting .list li');
 
-      completedCallback: function () {
-        // Do nothing. But it's here in case other modules/themes want to override it.
+    sort.on('click', function () {
+      if ($(this).hasClass('active')) {
+        $(this).removeClass('active');
+        $('.sorting .list').slideUp();
+      } else {
+        $(this).addClass('active');
+        $('.sorting .list').slideDown();
       }
-    }
-  }
+    });
 
-  $(function () {
-    if (typeof Drupal == 'undefined') {
-      init();
-    }
-  });
+    $li.on('click touch', function () {
+      var $this = $(this);
 
-  function init() {
+      if ($this.hasClass('active')) {
 
-  }
+      } else {
+        $li.removeClass('check');
+        $(this).addClass('check');
+        $title.html($this.html());
+      }
+    })
+  })
+
+  $(window).load(function () {
+    var $btn = $('.left-part li a');
+
+    $btn.on('click', function () {
+      var $this = $(this),
+        $parent = $this.parent('li'),
+        $list = $parent.find('.list');
+
+      if ($parent.hasClass('active')) {
+        $parent.removeClass('active');
+        $list.slideUp();
+      } else {
+        $('.left-part li').removeClass('active');
+        $('.left-part li .list').slideUp();
+        $parent.addClass('active');
+        $list.slideDown();
+      }
+
+    })
+  })
+
+  $(window).load(function () {
+    var btn = $('.gallery .mini-img li'),
+      big_img = $('.gallery .main li');
+
+    btn.on('click', function () {
+      var $index = $(this).index();
+
+      if ($(this).hasClass('active')) {
+
+      } else {
+        btn.removeClass('active');
+        $(this).addClass('active');
+        big_img.hide();
+        big_img.eq($index).show();
+      }
+    })
+  })
 
 })(jQuery);
 
