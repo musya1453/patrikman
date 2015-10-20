@@ -26,6 +26,11 @@ body {
     li {
       display: none;
       list-style: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
 
       &.active {
         display: block;
@@ -466,13 +471,93 @@ body {
   .detail-product {
     margin-bottom: 35px;
 
+    .desc {
+      padding: 20px 0 0 70px;
+
+      h5 {
+        font-size: 19px;
+        font-weight: bold;
+        margin: 0 0 11px 0;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+
+        li {
+          padding: 4px;
+          border: 1px solid #000;
+          display: inline-block;
+          margin-right: 7px;
+          margin-bottom: 7px;
+        }
+      }
+    }
+
+    .price {
+      padding: 70px 0 0 70px;
+      margin-bottom: 30px;
+
+      img {
+        display: inline-block;
+        margin-left: 10px;
+      }
+
+      span {
+        font-size: 24px;
+        display: inline-block;
+        margin-right: 20px;
+        position: relative;
+
+        &:first-child {
+          font-size: 43px;
+          font-weight: bold;
+        }
+
+        &.not-actual:before {
+          @include pseudo-block($top: 50%, $left: 50%);
+          margin-top: -1px;
+          @include transform(translateX(-50%) rotate(-10deg));
+          width: 120%;
+          height: 2px;
+          background-color: #ff1010;
+        }
+      }
+    }
+
+    .btn-wrap-page {
+      padding-left: 70px;
+
+      a {
+        position: relative;
+        display: inline-block;
+        font-size: 20px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 22px 25px 22px 60px;
+        background: #4c87c0;
+        @include transition(all .3s);
+
+        &:hover {
+          opacity: .7;
+        }
+
+        &:before {
+          @include pseudo-block($top: 50%, $left: 20px);
+          @include oneline-sprite-box($icons, prim-1);
+          @include transform(translateY(-50%));
+        }
+      }
+    }
+
     .pull-right {
       width: 590px;
       text-align: left;
       padding-top: 50px;
 
       h3 {
-        padding:0 0 10px 70px;
+        padding: 0 0 10px 70px;
         border-bottom: 1px solid #f6f6f6;
         font-size: 40px;
         font-weight: bold;
@@ -578,5 +663,19 @@ body {
         }
       }
     }
+  }
+}
+
+.old-price {
+  position: relative;
+  display: inline-block !important;
+
+  &:before {
+    @include pseudo-block($top: 50%, $left: 50%);
+    margin-top: -1px;
+    @include transform(translateX(-50%) rotate(-10deg));
+    width: 120%;
+    height: 1px;
+    background-color: #ff1010;
   }
 }
