@@ -11,6 +11,14 @@
 @import "forms/forms";
 
 //layout
-@import "layout/content";
+
 
 //blocks
+
+@media (min-width: 768px) and (max-width: 1179px) {
+  @import "layout/content-m";
+}
+
+@media (min-width: 1180px) {
+  @import "layout/content";
+}

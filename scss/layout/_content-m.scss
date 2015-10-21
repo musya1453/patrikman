@@ -1,9 +1,8 @@
-.roub{
+.roub {
   font-family: PTRoubleSans;
 }
+
 .site-container {
-  width: 1160px;
-  margin: 0 auto;
   position: relative;
 }
 
@@ -71,28 +70,84 @@ body {
 
 .header-wrapper {
 
+  .menu-btn-mobile {
+    position: absolute;
+    right: 15px;
+    top: 25px;
+    display: block;
+    z-index: 15;
+
+    &.active {
+
+      span {
+        opacity: 0;
+      }
+
+      &:before {
+        @include transform(rotate(-45deg));
+        top: 5px;
+      }
+
+      &:after {
+        @include transform(rotate(45deg));
+        bottom: 5px;
+      }
+    }
+
+    span {
+      width: 40px;
+      height: 5px;
+      background: #4c87c0;
+      display: inline-block;
+      @include border-radius(5px);
+      @include transition(all .3s);
+    }
+
+    &:before {
+      @include pseudo-block($top: -5px, $left: 0);
+      width: 40px;
+      height: 5px;
+      background: #4c87c0;
+      @include border-radius(5px);
+      @include transition(all .3s);
+    }
+
+    &:after {
+      @include pseudo-block($bottom: -10px, $left: 0);
+      width: 40px;
+      height: 5px;
+      background: #4c87c0;
+      @include border-radius(5px);
+      @include transition(all .3s);
+    }
+  }
+
   .header-top {
     padding: 7px 0;
 
     .logo {
-      text-align: center;
+      padding-left: 10px;
     }
 
     .contact {
       position: absolute;
-      right: 0;
+      right: 65px;
       top: 20px;
       font-size: 13px;
       color: #979797;
       text-align: right;
 
       .tel {
-        font-size: 20px;
+        font-size: 28px;
         color: #000;
       }
 
       span {
         display: block;
+
+        &:first-child {
+          display: none;
+        }
       }
     }
   }
@@ -100,59 +155,50 @@ body {
   .header-bottom {
     font-size: 17px;
     padding: 17px;
-    background: #fafafa;
-    border-bottom: 1px solid #eee;
-    border-top: 1px solid #eee;
+    background: rgba(0, 0, 0, 0.90);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    position: fixed;
+    display: none;
 
     .nav ul {
       margin: 0;
       padding: 0;
+      display: inline-block;
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      @include transform(translateX(-50%));
 
       li {
-        display: inline-block;
-        margin-right: 20px;
+        font-size: 44px;
+        list-style: none;
+        margin-bottom: 7px;
 
         &.active a {
-          color: #4174a5;
-          text-decoration: underline;
+          color: #4cbade;
         }
 
         a {
           text-decoration: none;
-          color: #666;
+          color: #ffffff;
         }
       }
     }
 
     .form {
-      position: absolute;
-      top: -4px;
-      right: 0;
+      display: none;
     }
-  }
-}
-
-.form-search {
-  display: inline-block;
-  @include text-hide();
-  background-image: image-url('icons/lup.jpg');
-  background-position: center;
-  background-color: #5891e3;
-  background-repeat: no-repeat;
-  height: 30px;
-  width: 58px;
-  border: none;
-  @include border-radius(3px);
-  @include transition(all .3s);
-
-  &:hover {
-    opacity: .8;
   }
 }
 
 .b-filter {
   @include clearfix();
   padding: 10px 0 30px 0;
+  display: none;
 
   .left-part {
     float: left;
@@ -314,13 +360,17 @@ body {
 .content {
   padding-top: 30px;
 
+  .b-product {
+    text-align: center;
+  }
+
   .item {
     display: inline-block;
     width: 380px;
-    margin-left: 5px;
+    margin-left: 15px;
     margin-bottom: 35px;
 
-    &:nth-child(3n+1) {
+    &:nth-child(2n+1) {
       margin-left: 0;
     }
 
@@ -506,7 +556,7 @@ body {
         margin-left: 10px;
       }
 
-      &>span {
+      & > span {
         font-size: 24px;
         display: inline-block;
         margin-right: 20px;
@@ -517,7 +567,7 @@ body {
           font-weight: bold;
         }
 
-        &.not-actual{
+        &.not-actual {
           font-size: 24px !important;
         }
 
@@ -603,6 +653,12 @@ body {
     border-bottom: 1px solid #eeeeee;
     @include clearfix();
     padding: 45px 0;
+    text-align: center;
+    font-size: 18px;
+
+    a{
+      color: #000;
+    }
 
     .title {
       font-weight: bold;
@@ -611,8 +667,12 @@ body {
     }
 
     .item {
-      float: left;
-      width: 33%;
+      display: inline-block;
+      width: 49%;
+      text-align: left;
+      vertical-align: top;
+      padding-left: 98px;
+      @include box-sizing(border-box);
 
       ul {
         margin: 0;

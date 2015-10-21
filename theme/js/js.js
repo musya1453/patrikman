@@ -53,6 +53,10 @@
     var btn = $('.gallery .mini-img li'),
       big_img = $('.gallery .main li');
 
+
+    big_img.eq(0).show();
+    btn.eq(0).addClass('active');
+
     btn.on('click', function () {
       var $index = $(this).index();
 
@@ -61,10 +65,26 @@
       } else {
         btn.removeClass('active');
         $(this).addClass('active');
-        big_img.hide();
-        big_img.eq($index).show();
+        big_img.fadeOut();
+        big_img.eq($index).fadeIn();
       }
     })
+  })
+
+  $(window).load(function(){
+    var $btn = $('.menu-btn-mobile'),
+      $nav = $('.header-bottom');
+
+    $btn.on('click', function(){
+      if($(this).hasClass('active')){
+        $(this).removeClass('active');
+        $nav.fadeOut();
+      }else{
+        $(this).addClass('active');
+        $nav.fadeIn();
+      }
+    })
+
   })
 
 })(jQuery);
